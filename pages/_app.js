@@ -1,18 +1,31 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
-  body {
+  /* RESET CSS */  
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  body {
+    font-family:sans-serif;
+    background-color: #0C0E10;
+  }
+  #__next{
+    display:flex;
+    min-height:100vh;
+    flex-direction:column;
+  }
+  img{
+    max-width:100%;
+    height:auto;
+    display:block;
   }
 `
-
 const theme = {
   colors: {
-    primary: '#0070f3',
+    primary: 'black',
   },
 }
+console.log("Debug no app")
 
 export default function App({ Component, pageProps }) {
   return (

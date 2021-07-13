@@ -1,10 +1,27 @@
 import styled from 'styled-components'
-
-const Title = styled.h1`
-  font-size: 50px;
-  color: ${({ theme }) => theme.colors.primary};
-`
+import MainGrid from './src/components/MainGrid' //CSS
+import Box from './src/components/Box' //CSS
 
 export default function Home() {
-  return <Title>My page</Title>
+  return ( 
+
+      <MainGrid>
+        <div className="areaProfile" style={{gridArea: 'areaProfile'}}>
+          <Box>
+            <img src="https://github.com/gbyteinfo.png"/>
+          </Box>
+        </div>
+        <div className= "areaWelcome" style={{gridArea: 'areaWelcome'}}>
+          <Box>
+            Bem Vindo
+          </Box>
+        </div>
+        <div className="areaProfileRelations" style={{gridArea: 'areaProfileRelations'}}>
+          <Box>
+            Pessoas, Comunidades e mais
+          </Box>
+        </div>
+      </MainGrid>
+  
+  )
 }
