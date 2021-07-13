@@ -1,5 +1,5 @@
-import MainGrid from './src/components/MainGrid' //CSS
-import Box from './src/components/Box' //CSS
+import MainGrid from '../src/components/MainGrid' //CSS
+import Box from '../src/components/Box' //CSS
 
 export default function Home() {
 
