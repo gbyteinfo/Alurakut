@@ -15,7 +15,7 @@ function ProfileSidebar(props){
 export default function Home() {
   
   const githubUser = 'gbyteinfo';
-  const pessoasFavoritas = ['gbyteinfo', 'jorge', 'leticia', 'bruna', 'joana', 'felipefialho']
+  const pessoasFavoritas = ['gbyteinfo', 'juunegreiros', 'omariosouto', 'peas', 'joana', 'felipefialho']
   
   return ( 
     <>
