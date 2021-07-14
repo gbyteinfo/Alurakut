@@ -20,30 +20,36 @@ export default function Home() {
     <>
       <AlurakutMenu />
       <MainGrid>
+        
+        
         <div className="areaProfile" style={{gridArea: 'areaProfile'}}>
           <ProfileSidebar userThumb={githubUser} />
         </div>
+        
+        
         <div className= "areaWelcome" style={{gridArea: 'areaWelcome'}}>
           <Box>
             Bem Vindo
           </Box>
         </div>
+
+
         <div className="areaProfileRelations" style={{gridArea: 'areaProfileRelations'}}>
           <Box>
             Pessoas e Mais
-          </Box>
+          </Box> 
           <Box>
-            Comunidade
+            <h2 className="smallTitle">
+              Comunidade GitHub ({pessoasFavoritas.length})
+            </h2>
             <ul>
             {pessoasFavoritas.map((pessoasMapeadas) => {
               return (
                 <a href={`/users/${pessoasMapeadas}`} key={pessoasMapeadas}>
                   <img src={`https://github.com/${pessoasMapeadas}.png`} style={{borderRadius: '8px'}}/>
-                  <li>{pessoasMapeadas}</li>
+                  <span>{pessoasMapeadas}</span>
                 </a>
-                
-                )
-              })
+              )})
             }
             </ul>
           </Box>
