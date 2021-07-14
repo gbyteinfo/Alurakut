@@ -286,6 +286,7 @@ export function OrkutNostalgicIconSet(props) {
 OrkutNostalgicIconSet.List = styled.ul`
   margin-top: 32px;
   list-style: none;
+  padding:0px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
