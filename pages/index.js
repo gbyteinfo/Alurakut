@@ -2,12 +2,14 @@ import MainGrid from '../src/components/MainGrid' //CSS
 import Box from '../src/components/Box' //CSS
 
 function ProfileSidebar(props){
+  console.log("Debung do Index props => ", props)
   return (
     <Box>
       <img src={`https://github.com/${props.userThumb}.png`} style={{borderRadius: '8px'}}/>
     </Box>
   )
 }
+
 export default function Home() {
   const githubUser = 'gbyteinfo';
 
