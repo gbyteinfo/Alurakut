@@ -5,7 +5,6 @@ import { AreaProfileRelationsBoxWrapper } from '../src/components/AreaProfileRel
 
 
 function ProfileSidebar(props){
-  console.log("Debung do Index props => ", props)
   return (
     <Box>
       <img src={`https://github.com/${props.userThumb}.png`} style={{borderRadius: '8px'}}/>
@@ -39,6 +38,29 @@ export default function Home() {
               Bem Vindo(a)
             </h1>
             <OrkutNostalgicIconSet />
+          </Box>
+          <Box>
+            <h2>O que fazer agora?</h2>
+            <form >
+              <div>
+                <input
+                  placeholder="Digite o nome da sua Comunidade." 
+                  name="title" 
+                  aria-label="Digite Agora"
+                  type="text"
+                />
+              </div>
+              <div>
+                <input
+                  placeholder="Url da imagem." 
+                  name="title" 
+                  aria-label="Digite Agora"
+                />
+              </div>
+              <button>
+                Criar Comunidade
+              </button>
+            </form>
           </Box>
         </div>
         
