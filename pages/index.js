@@ -1,5 +1,6 @@
 import MainGrid from '../src/components/MainGrid' //CSS
 import Box from '../src/components/Box' //CSS
+import { AlurakutMenu } from '../src/lib/AluraCommons'
 
 function ProfileSidebar(props){
   console.log("Debung do Index props => ", props)
@@ -11,9 +12,13 @@ function ProfileSidebar(props){
 }
 
 export default function Home() {
+  
   const githubUser = 'gbyteinfo';
-
+  const pessoasFavoritas = ['gbyteinfo', 'jorge', 'leticia', 'luiza', 'bruna', 'joana', 'felipefialho']
+  
   return ( 
+    <>
+      <AlurakutMenu />
       <MainGrid>
         <div className="areaProfile" style={{gridArea: 'areaProfile'}}>
           <ProfileSidebar userThumb={githubUser} />
@@ -29,8 +34,14 @@ export default function Home() {
           </Box>
           <Box>
             Comunidade
+            {pessoasFavoritas.map((pessoasMapeadas) => {
+              return (<li>{pessoasMapeadas}</li>)   
+              
+              })
+            }
           </Box>
         </div>
       </MainGrid>
+    </>
   )
 }
