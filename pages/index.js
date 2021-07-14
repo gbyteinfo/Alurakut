@@ -34,11 +34,18 @@ export default function Home() {
           </Box>
           <Box>
             Comunidade
+            <ul>
             {pessoasFavoritas.map((pessoasMapeadas) => {
-              return (<li>{pessoasMapeadas}</li>)   
-              
+              return (
+                <a href={`/users/${pessoasMapeadas}`} key={pessoasMapeadas}>
+                  <img src={`https://github.com/${pessoasMapeadas}.png`} style={{borderRadius: '8px'}}/>
+                  <li>{pessoasMapeadas}</li>
+                </a>
+                
+                )
               })
             }
+            </ul>
           </Box>
         </div>
       </MainGrid>
