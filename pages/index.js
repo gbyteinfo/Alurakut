@@ -27,20 +27,18 @@ export default function Home() {
     <>
       <AlurakutMenu />
       <MainGrid>
-        
         <div className="areaProfile" style={{gridArea: 'areaProfile'}}>
           <ProfileSidebar userThumb={githubUser} />
         </div>
-        
+
         <div className= "areaWelcome" style={{gridArea: 'areaWelcome'}}>
           <Box>
-            <h1 className="title">
-              Bem Vindo(a)
-            </h1>
+            <h1 className="title">Bem Vindo(a)</h1>
             <OrkutNostalgicIconSet />
           </Box>
           <Box>
             <h2>O que fazer agora?</h2>
+            <hr />
             <form >
               <div>
                 <input
@@ -66,7 +64,8 @@ export default function Home() {
         
         <div className="areaProfileRelations" style={{gridArea: 'areaProfileRelations'}}>
           <AreaProfileRelationsBoxWrapper>
-            <h2 className="smallTitle">Comunidade GitHub ({pessoasFavoritas.length})</h2>
+            <h2 className="smallTitle">Comunidade GitHub ({pessoasFavoritas.length})</h2><hr />
+              
               <ul style={{margin:"0px"}}>
                 {pessoasFavoritas.map((pessoasMapeadas) => {
                   return (
