@@ -1,17 +1,20 @@
 import MainGrid from '../src/components/MainGrid' //CSS
 import Box from '../src/components/Box' //CSS
 
+function ProfileSidebar(props){
+  return (
+    <Box>
+      <img src={`https://github.com/${props.userThumb}.png`} style={{borderRadius: '8px'}}/>
+    </Box>
+  )
+}
 export default function Home() {
-
   const githubUser = 'gbyteinfo';
 
   return ( 
-
       <MainGrid>
         <div className="areaProfile" style={{gridArea: 'areaProfile'}}>
-          <Box>
-            <img src={`https://github.com/${githubUser}.png`} style={{borderRadius: '8px'}}/>
-          </Box>
+          <ProfileSidebar userThumb={githubUser} />
         </div>
         <div className= "areaWelcome" style={{gridArea: 'areaWelcome'}}>
           <Box>
@@ -27,6 +30,5 @@ export default function Home() {
           </Box>
         </div>
       </MainGrid>
-  
   )
 }
