@@ -96,6 +96,7 @@ AlurakutMenu.Wrapper = styled.header`
     background-color: #308BC5;
     padding: 7px 16px;
     max-width: 1110px;
+    height: auto;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -159,7 +160,7 @@ AlurakutMenu.Logo = styled.img`
   background-color: #ffffff;
   padding: 9px 14px;
   border-radius: 1000px;
-  height: 34px;
+  height: 17px;
 `;
 
 function AlurakutMenuProfileSidebar({ githubUser }) {
