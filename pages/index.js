@@ -22,11 +22,9 @@ export default function Home() {
       <AlurakutMenu />
       <MainGrid>
         
-        
         <div className="areaProfile" style={{gridArea: 'areaProfile'}}>
           <ProfileSidebar userThumb={githubUser} />
         </div>
-        
         
         <div className= "areaWelcome" style={{gridArea: 'areaWelcome'}}>
           <Box>
@@ -36,8 +34,7 @@ export default function Home() {
             <OrkutNostalgicIconSet />
           </Box>
         </div>
-
-
+        
         <div className="areaProfileRelations" style={{gridArea: 'areaProfileRelations'}}>
           <AreaProfileRelationsBoxWrapper>
           <h2 className="smallTitle">Comunidade GitHub ({pessoasFavoritas.length})</h2>
@@ -55,6 +52,11 @@ export default function Home() {
             </ul>
             </AreaProfileRelationsBoxWrapper>
         </div>
+
+
+
+
+        
       </MainGrid>
     </>
   )
