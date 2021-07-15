@@ -12,7 +12,7 @@ function ProfileSidebar(props){
       <hr />
         <p>
           <a className ="boxLink" href={`https://github.com/${props.userThumb}`}>
-            git: @{props.userThumb}
+            git@{props.userThumb}
           </a>
         </p>
       <hr />
@@ -22,15 +22,28 @@ function ProfileSidebar(props){
 }
 
 export default function Home() {
-  const [grupos, criaGrupos] = React.useState([]);// USANDO HOCKS PARA MANIPULAR ESTATE
-  console.log('Grupos Adicionados', grupos)
+  const [grupos, criaGrupos] = React.useState([ //USANDO HOCKS PARA MANIPULAR STATE
+    { 
+      id:'aaasd',
+      title: 'Gbyteinfo', 
+      image: 'https://scontent.fcpq5-1.fna.fbcdn.net/v/t1.6435-0/p526x296/139457967_422965425797684_7632254747461119700_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=8bfeb9&_nc_eui2=AeFtH74JZ2pMS0DGVKkdHodZZqa6yTshW4ZmprrJOyFbhm-vn1dj_WwLk3TxWmQDpJgcP3UtBv2VN4X15F-owrm6&_nc_ohc=yURKh4ldg40AX_ywK0o&_nc_ht=scontent.fcpq5-1.fna&oh=e85f90a5fdb19a4561ee7aaa1652e877&oe=60F40C3D',
+    },{
+      id:'aaaassss',
+      title:'Eu odeio acordar cedo',
+      image:'https://alurakut.vercel.app/capa-comunidade-01.jpg'
+    },{
+      id:'dddsasaaa',
+      title: 'Rock é vida',
+      image: 'http://3.bp.blogspot.com/-zGCrrMY3k7k/XjyvlYGP22I/AAAAAAAALwc/HP8II5nSKCMpWdVhXFAhM06UubE1c6hnwCK4BGAYYCw/s1600/500.jpg',
+    }
+  ]);
 
   const githubUser = 'gbyteinfo';
   const pessoasFavoritas = ['gbyteinfo', 'juunegreiros', 'omariosouto', 'peas', 'joana', 'felipefialho']
   return ( 
     <>
       <AlurakutMenu />
-      <MainGrid>
+      <MainGrid >
         <div className="areaProfile" style={{gridArea: 'areaProfile'}}>
           <ProfileSidebar userThumb={githubUser} />
         </div>
@@ -49,15 +62,19 @@ export default function Home() {
                 
                 //CAPTURANDO DADOS DO FORMULARIO
                 const dadosFormGrupos = new FormData(event.target)
-                console.log('Group Name => ', dadosFormGrupos.get('titleGroup'))
-                console.log('Group Image => ', dadosFormGrupos.get('imageGroup'))
+                //console.log('Group Name => ', dadosFormGrupos.get('titleGroup'))
+                //console.log('Group Image => ', dadosFormGrupos.get('imageGroup'))
 
 
                 //ADICIONANDO EM grupoAtt O ARRAY COM O useState(grupos)
                 //USANDO ... (SPRED) PARA ADICIONAR NOVO ITEM AO ARRAY 
-                const gruposAtt = [...grupos, 'Vivendo com Rock']
+                const grupo = {
+                  id: new Date().toISOString(),
+                  title: dadosFormGrupos.get('titleGroup'),
+                  image: dadosFormGrupos.get('imageGroup'),
+                }
+                const gruposAtt = [...grupos, grupo]
                 criaGrupos(gruposAtt)
-
               }}
             >
               <div>
@@ -86,11 +103,11 @@ export default function Home() {
               <ul style={{margin:"0px"}}>
                 {grupos.map((itemAtual) => {
                   return (
-                    <li>
-                      <a href={`/grupos/${itemAtual}`} key={itemAtual}>
+                    <li key={itemAtual.id}>
+                      <a href={`https://www.gbyteinfo.com.br/melhores-alternativas-de-aplicativo-igual-whatsapp/`}>
                         {/*<img src={`https://github.com/${gruposAdicionados}.png`}/>*/}
-                        <img src={`http://3.bp.blogspot.com/-zGCrrMY3k7k/XjyvlYGP22I/AAAAAAAALwc/HP8II5nSKCMpWdVhXFAhM06UubE1c6hnwCK4BGAYYCw/s1600/500.jpg`} />
-                        <span>{itemAtual}</span>
+                        <img src={itemAtual.image} />
+                        <span>{itemAtual.title}</span>
                       </a>
                     </li>
                   )})
@@ -103,8 +120,9 @@ export default function Home() {
               <ul style={{margin:"0px"}}>
                 {pessoasFavoritas.map((itemAtual) => {
                   return (
-                    <li>
-                      <a href={`/amigos/${itemAtual}`} key={itemAtual}>
+                    <li key={itemAtual.id}>
+                      {/*<a href={`/amigos/${itemAtual}`} key={itemAtual}>*/}
+                      <a href={`https://www.gbyteinfo.com.br/melhores-alternativas-de-aplicativo-igual-whatsapp/`}>
                         <img src={`https://github.com/${itemAtual}.png`}/>
                         <span>{itemAtual}</span>
                       </a>
