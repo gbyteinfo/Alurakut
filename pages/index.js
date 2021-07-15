@@ -46,7 +46,15 @@ export default function Home() {
             <form onSubmit={
               function handleCreateComunity(event){
                 event.preventDefault();
+                
+                //CAPTURANDO DADOS DO FORMULARIO
+                const dadosFormGrupos = new FormData(event.target)
+                console.log('Group Name => ', dadosFormGrupos.get('titleGroup'))
+                console.log('Group Image => ', dadosFormGrupos.get('imageGroup'))
 
+
+                //ADICIONANDO EM grupoAtt O ARRAY COM O useState(grupos)
+                //USANDO ... (SPRED) PARA ADICIONAR NOVO ITEM AO ARRAY 
                 const gruposAtt = [...grupos, 'Vivendo com Rock']
                 criaGrupos(gruposAtt)
 
@@ -55,7 +63,7 @@ export default function Home() {
               <div>
                 <input
                   placeholder="Digite o nome do grupo" 
-                  name="title" 
+                  name="titleGroup" 
                   aria-label="Nome do Grupo"
                   type="text"
                 />
@@ -63,7 +71,7 @@ export default function Home() {
               <div>
                 <input
                   placeholder="Cole a URL da imagem de capa" 
-                  name="image" 
+                  name="imageGroup" 
                   aria-label="Capa do Grupo"
                 />
               </div>
