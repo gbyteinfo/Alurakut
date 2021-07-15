@@ -1,3 +1,4 @@
+import React from 'react';
 import MainGrid from '../src/components/MainGrid' //CSS
 import Box from '../src/components/Box' //CSS
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AluraCommons'
@@ -21,8 +22,10 @@ function ProfileSidebar(props){
 }
 
 export default function Home() {
+  const [grupos, criaGrupos] = React.useState([]);// USANDO HOCKS PARA MANIPULAR ESTATE
+  console.log('Grupos Adicionados', grupos)
+
   const githubUser = 'gbyteinfo';
-  const grupos = ['Muito Rock', 'Blog Gbyteinfo'];
   const pessoasFavoritas = ['gbyteinfo', 'juunegreiros', 'omariosouto', 'peas', 'joana', 'felipefialho']
   return ( 
     <>
@@ -38,33 +41,33 @@ export default function Home() {
             <OrkutNostalgicIconSet />
           </Box>
           <Box>
-            <h2>O que fazer agora?</h2>
+            <h2>Crie o que você quiser :)</h2>
             <hr />
             <form onSubmit={
               function handleCreateComunity(event){
                 event.preventDefault();
-                console.log('vent => ', event)
-                
+
+                const gruposAtt = [...grupos, 'Vivendo com Rock']
+                criaGrupos(gruposAtt)
+
               }}
             >
               <div>
                 <input
-                  placeholder="Digite o nome da sua Comunidade." 
+                  placeholder="Digite o nome do grupo" 
                   name="title" 
-                  aria-label="Digite Agora"
+                  aria-label="Nome do Grupo"
                   type="text"
                 />
               </div>
               <div>
                 <input
-                  placeholder="Url da imagem." 
+                  placeholder="Cole a URL da imagem de capa" 
                   name="image" 
-                  aria-label="Digite Agora"
+                  aria-label="Capa do Grupo"
                 />
               </div>
-              <button>
-                Criar Comunidade
-              </button>
+              <button>Criar Grupo</button>
             </form>
           </Box>
         </div>
@@ -73,28 +76,29 @@ export default function Home() {
           <AreaProfileRelationsBoxWrapper>
             <h2 className="smallTitle">Grupos Adicionados ({grupos.length})</h2><hr />
               <ul style={{margin:"0px"}}>
-                {grupos.map((gruposAdicionados) => {
+                {grupos.map((itemAtual) => {
                   return (
                     <li>
-                      <a href={`/grupos/${gruposAdicionados}`} key={gruposAdicionados}>
+                      <a href={`/grupos/${itemAtual}`} key={itemAtual}>
                         {/*<img src={`https://github.com/${gruposAdicionados}.png`}/>*/}
                         <img src={`http://3.bp.blogspot.com/-zGCrrMY3k7k/XjyvlYGP22I/AAAAAAAALwc/HP8II5nSKCMpWdVhXFAhM06UubE1c6hnwCK4BGAYYCw/s1600/500.jpg`} />
-                        <span>{gruposAdicionados}</span>
+                        <span>{itemAtual}</span>
                       </a>
                     </li>
                   )})
                 }{/*pessoasFavoritas*/}
               </ul>
           </AreaProfileRelationsBoxWrapper>
+
           <AreaProfileRelationsBoxWrapper>
             <h2 className="smallTitle">Amigos ({pessoasFavoritas.length})</h2><hr />
               <ul style={{margin:"0px"}}>
-                {pessoasFavoritas.map((pessoasMapeadas) => {
+                {pessoasFavoritas.map((itemAtual) => {
                   return (
                     <li>
-                      <a href={`/amigos/${pessoasMapeadas}`} key={pessoasMapeadas}>
-                        <img src={`https://github.com/${pessoasMapeadas}.png`}/>
-                        <span>{pessoasMapeadas}</span>
+                      <a href={`/amigos/${itemAtual}`} key={itemAtual}>
+                        <img src={`https://github.com/${itemAtual}.png`}/>
+                        <span>{itemAtual}</span>
                       </a>
                     </li>
                   )})
