@@ -21,8 +21,19 @@ function ProfileSidebar(props){
   )
 }
 
+function AreaProfileRelations(props){
+  return (
+    <AreaProfileRelationsBoxWrapper>
+        <h2 className="smallTitle">{props.title} ({props.items.length})</h2><hr />
+          <ul style={{margin:"0px"}}>
+            
+          </ul>
+      </AreaProfileRelationsBoxWrapper>
+  )
+}
 export default function Home() {
-  const [grupos, criaGrupos] = React.useState([ //USANDO HOCKS PARA MANIPULAR STATE
+  const [seguidores, setSeguidores] = React.useState([]);
+  const [grupos, setGrupos] = React.useState([ //USANDO HOCKS PARA MANIPULAR STATE
     { 
       id:'aaasd',
       title: 'Gbyteinfo', 
@@ -37,9 +48,22 @@ export default function Home() {
       image: 'http://3.bp.blogspot.com/-zGCrrMY3k7k/XjyvlYGP22I/AAAAAAAALwc/HP8II5nSKCMpWdVhXFAhM06UubE1c6hnwCK4BGAYYCw/s1600/500.jpg',
     }
   ]);
-
   const githubUser = 'gbyteinfo';
   const pessoasFavoritas = ['gbyteinfo', 'juunegreiros', 'omariosouto', 'peas', 'joana', 'felipefialho']
+
+  /* INICIO SEGUIDORES API GITHUB */
+    React.useEffect(function() {
+      fetch('https://api.github.com/users/gbyteinfo/following ')
+        .then(function (respostaServidor){
+          return respostaServidor.json();
+        })
+          .then(function (respostaCompleta){
+            setSeguidores(respostaCompleta)
+        })
+    },[])
+
+  /* FIM SEGUIDORES API GITHUB */
+
   return ( 
     <>
       <AlurakutMenu githubUser={githubUser}/>
@@ -74,7 +98,7 @@ export default function Home() {
                   image: dadosFormGrupos.get('imageGroup'),
                 }
                 const gruposAtt = [...grupos, grupo]
-                criaGrupos(gruposAtt)
+                setGrupos(gruposAtt)
               }}
             >
               <div>
@@ -98,14 +122,14 @@ export default function Home() {
         </div>
         
         <div className="areaProfileRelations" style={{gridArea: 'areaProfileRelations'}}>
+          <AreaProfileRelations title="Seguidoresss" items={seguidores}/>
           <AreaProfileRelationsBoxWrapper>
             <h2 className="smallTitle">Grupos ({grupos.length})</h2><hr />
               <ul style={{margin:"0px"}}>
                 {grupos.map((itemAtual) => {
                   return (
                     <li key={itemAtual.id/*TIRANDO ERRO KEY*/}>
-                      <a href={`https://www.gbyteinfo.com.br/melhores-alternativas-de-aplicativo-igual-whatsapp/`} key={itemAtual.id}>
-                        {/*<img src={`https://github.com/${gruposAdicionados}.png`}/>*/}
+                      <a href={`https://www.gbyteinfo.com.br/melhores-alternativas-de-aplicativo-igual-whatsapp/`}>
                         <img src={itemAtual.image} />
                         <span>{itemAtual.title}</span>
                       </a>
@@ -114,15 +138,14 @@ export default function Home() {
                 }{/*pessoasFavoritas*/}
               </ul>
           </AreaProfileRelationsBoxWrapper>
-
           <AreaProfileRelationsBoxWrapper>
             <h2 className="smallTitle">Amigos ({pessoasFavoritas.length})</h2><hr />
               <ul style={{margin:"0px"}}>
                 {pessoasFavoritas.map((itemAtual) => {
                   return (
                     <li key={itemAtual/*TIRANDO ERRO KEY*/}>
-                      {/*<a href={`/amigos/${itemAtual}`} key={itemAtual}>*/}
-                      <a href={`https://www.gbyteinfo.com.br/melhores-alternativas-de-aplicativo-igual-whatsapp/`} key={itemAtual.id}>
+                      {/*<a href={`/amigos/${itemAtual}`}*/}
+                      <a href={`https://www.gbyteinfo.com.br/melhores-alternativas-de-aplicativo-igual-whatsapp/`}>
                         <img src={`https://github.com/${itemAtual}.png`}/>
                         <span>{itemAtual}</span>
                       </a>
@@ -130,7 +153,7 @@ export default function Home() {
                   )})
                 }{/*pessoasFavoritas*/}
               </ul>
-            </AreaProfileRelationsBoxWrapper>
+          </AreaProfileRelationsBoxWrapper>
         </div>
 
       </MainGrid>
