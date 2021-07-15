@@ -32,8 +32,10 @@ function AreaProfileRelations(props){
   )
 }
 export default function Home() {
-  const [seguidores, setSeguidores] = React.useState([]);
-  const [grupos, setGrupos] = React.useState([ //USANDO HOCKS PARA MANIPULAR STATE
+  const githubUser = 'gbyteinfo';
+  const pessoasFavoritas = ['gbyteinfo', 'juunegreiros', 'omariosouto', 'peas', 'joana', 'felipefialho']
+  const [seguidores, setSeguidores] = React.useState([]); //USANDO HOCKS PARA GUARDAR STATE
+  const [grupos, setGrupos] = React.useState([ //USANDO HOCKS PARA GUARDAR STATE
     { 
       id:'aaasd',
       title: 'Gbyteinfo', 
@@ -41,27 +43,24 @@ export default function Home() {
     },{
       id:'aaaassss',
       title:'Eu odeio acordar cedo',
-      image:'https://alurakut.vercel.app/capa-comunidade-01.jpg'
+      image:'https://media.giphy.com/media/5QMTGldAFagUeQPRDB/giphy.gif'
     },{
       id:'dddsasaaa',
       title: 'Rock é vida',
-      image: 'http://3.bp.blogspot.com/-zGCrrMY3k7k/XjyvlYGP22I/AAAAAAAALwc/HP8II5nSKCMpWdVhXFAhM06UubE1c6hnwCK4BGAYYCw/s1600/500.jpg',
+      image: 'https://media.giphy.com/media/7lAFH4MrNJMcg/giphy.gif',
     }
   ]);
-  const githubUser = 'gbyteinfo';
-  const pessoasFavoritas = ['gbyteinfo', 'juunegreiros', 'omariosouto', 'peas', 'joana', 'felipefialho']
 
   /* INICIO SEGUIDORES API GITHUB */
-    React.useEffect(function() {
-      fetch('https://api.github.com/users/gbyteinfo/following ')
-        .then(function (respostaServidor){
+    React.useEffect(function() { // USANDO HOCKS PARA MANIPULAR STATE
+      fetch('https://api.github.com/users/gbyteinfo/followers')
+        .then(function (respostaServidor){ // CRIA A PROMISSE
           return respostaServidor.json();
         })
-          .then(function (respostaCompleta){
+          .then(function (respostaCompleta){// PROMISSE RECUPERADA
             setSeguidores(respostaCompleta)
         })
-    },[])
-
+    },[])// EXECUTA SO UMA VEZ, OU UMA VARIAVEL COM STATE INDICANDO QUANTAS VEZES O useEffect() IRA EXECUTAR
   /* FIM SEGUIDORES API GITHUB */
 
   return ( 
