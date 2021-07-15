@@ -22,6 +22,7 @@ function ProfileSidebar(props){
 
 export default function Home() {
   const githubUser = 'gbyteinfo';
+  const grupos = ['Muito Rock', 'Blog Gbyteinfo'];
   const pessoasFavoritas = ['gbyteinfo', 'juunegreiros', 'omariosouto', 'peas', 'joana', 'felipefialho']
   return ( 
     <>
@@ -39,7 +40,13 @@ export default function Home() {
           <Box>
             <h2>O que fazer agora?</h2>
             <hr />
-            <form >
+            <form onSubmit={
+              function handleCreateComunity(event){
+                event.preventDefault();
+                console.log('vent => ', event)
+                
+              }}
+            >
               <div>
                 <input
                   placeholder="Digite o nome da sua Comunidade." 
@@ -51,7 +58,7 @@ export default function Home() {
               <div>
                 <input
                   placeholder="Url da imagem." 
-                  name="title" 
+                  name="image" 
                   aria-label="Digite Agora"
                 />
               </div>
@@ -64,13 +71,28 @@ export default function Home() {
         
         <div className="areaProfileRelations" style={{gridArea: 'areaProfileRelations'}}>
           <AreaProfileRelationsBoxWrapper>
-            <h2 className="smallTitle">Comunidade GitHub ({pessoasFavoritas.length})</h2><hr />
-              
+            <h2 className="smallTitle">Grupos Adicionados ({grupos.length})</h2><hr />
+              <ul style={{margin:"0px"}}>
+                {grupos.map((gruposAdicionados) => {
+                  return (
+                    <li>
+                      <a href={`/grupos/${gruposAdicionados}`} key={gruposAdicionados}>
+                        {/*<img src={`https://github.com/${gruposAdicionados}.png`}/>*/}
+                        <img src={`http://3.bp.blogspot.com/-zGCrrMY3k7k/XjyvlYGP22I/AAAAAAAALwc/HP8II5nSKCMpWdVhXFAhM06UubE1c6hnwCK4BGAYYCw/s1600/500.jpg`} />
+                        <span>{gruposAdicionados}</span>
+                      </a>
+                    </li>
+                  )})
+                }{/*pessoasFavoritas*/}
+              </ul>
+          </AreaProfileRelationsBoxWrapper>
+          <AreaProfileRelationsBoxWrapper>
+            <h2 className="smallTitle">Amigos ({pessoasFavoritas.length})</h2><hr />
               <ul style={{margin:"0px"}}>
                 {pessoasFavoritas.map((pessoasMapeadas) => {
                   return (
                     <li>
-                      <a href={`/users/${pessoasMapeadas}`} key={pessoasMapeadas}>
+                      <a href={`/amigos/${pessoasMapeadas}`} key={pessoasMapeadas}>
                         <img src={`https://github.com/${pessoasMapeadas}.png`}/>
                         <span>{pessoasMapeadas}</span>
                       </a>
