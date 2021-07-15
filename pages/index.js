@@ -42,7 +42,7 @@ export default function Home() {
   const pessoasFavoritas = ['gbyteinfo', 'juunegreiros', 'omariosouto', 'peas', 'joana', 'felipefialho']
   return ( 
     <>
-      <AlurakutMenu />
+      <AlurakutMenu githubUser={githubUser}/>
       <MainGrid >
         <div className="areaProfile" style={{gridArea: 'areaProfile'}}>
           <ProfileSidebar userThumb={githubUser} />
@@ -99,7 +99,7 @@ export default function Home() {
         
         <div className="areaProfileRelations" style={{gridArea: 'areaProfileRelations'}}>
           <AreaProfileRelationsBoxWrapper>
-            <h2 className="smallTitle">Grupos Adicionados ({grupos.length})</h2><hr />
+            <h2 className="smallTitle">Grupos ({grupos.length})</h2><hr />
               <ul style={{margin:"0px"}}>
                 {grupos.map((itemAtual) => {
                   return (
