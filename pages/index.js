@@ -7,7 +7,7 @@ import { AreaProfileRelationsBoxWrapper } from '../src/components/AreaProfileRel
 
 function ProfileSidebar(props){
   return (
-    <Box>
+    <Box as="aside">
       <img src={`https://github.com/${props.userThumb}.png`} style={{borderRadius: '8px'}}/>
       <hr />
         <p>
@@ -103,8 +103,8 @@ export default function Home() {
               <ul style={{margin:"0px"}}>
                 {grupos.map((itemAtual) => {
                   return (
-                    <li key={itemAtual.id}>
-                      <a href={`https://www.gbyteinfo.com.br/melhores-alternativas-de-aplicativo-igual-whatsapp/`}>
+                    <li key={itemAtual.id/*TIRANDO ERRO KEY*/}>
+                      <a href={`https://www.gbyteinfo.com.br/melhores-alternativas-de-aplicativo-igual-whatsapp/`} key={itemAtual.id}>
                         {/*<img src={`https://github.com/${gruposAdicionados}.png`}/>*/}
                         <img src={itemAtual.image} />
                         <span>{itemAtual.title}</span>
@@ -120,9 +120,9 @@ export default function Home() {
               <ul style={{margin:"0px"}}>
                 {pessoasFavoritas.map((itemAtual) => {
                   return (
-                    <li key={itemAtual.id}>
+                    <li key={itemAtual/*TIRANDO ERRO KEY*/}>
                       {/*<a href={`/amigos/${itemAtual}`} key={itemAtual}>*/}
-                      <a href={`https://www.gbyteinfo.com.br/melhores-alternativas-de-aplicativo-igual-whatsapp/`}>
+                      <a href={`https://www.gbyteinfo.com.br/melhores-alternativas-de-aplicativo-igual-whatsapp/`} key={itemAtual.id}>
                         <img src={`https://github.com/${itemAtual}.png`}/>
                         <span>{itemAtual}</span>
                       </a>
