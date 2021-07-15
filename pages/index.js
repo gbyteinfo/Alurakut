@@ -37,13 +37,13 @@ export default function Home() {
   const [seguidores, setSeguidores] = React.useState([]); //USANDO HOCKS PARA GUARDAR STATE
   const [grupos, setGrupos] = React.useState([ //USANDO HOCKS PARA GUARDAR STATE
     { 
+      id:'aaaassss',
+      title:'Eu odeio acordar cedo',
+      image:'https://media.giphy.com/media/5QMTGldAFagUeQPRDB/giphy.gif',
+    },{
       id:'aaasd',
       title: 'Gbyteinfo', 
       image: 'https://scontent.fcpq5-1.fna.fbcdn.net/v/t1.6435-0/p526x296/139457967_422965425797684_7632254747461119700_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=8bfeb9&_nc_eui2=AeFtH74JZ2pMS0DGVKkdHodZZqa6yTshW4ZmprrJOyFbhm-vn1dj_WwLk3TxWmQDpJgcP3UtBv2VN4X15F-owrm6&_nc_ohc=yURKh4ldg40AX_ywK0o&_nc_ht=scontent.fcpq5-1.fna&oh=e85f90a5fdb19a4561ee7aaa1652e877&oe=60F40C3D',
-    },{
-      id:'aaaassss',
-      title:'Eu odeio acordar cedo',
-      image:'https://media.giphy.com/media/5QMTGldAFagUeQPRDB/giphy.gif'
     },{
       id:'dddsasaaa',
       title: 'Rock é vida',
