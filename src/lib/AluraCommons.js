@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import NextLink from 'next/link';
+import {useRouter} from 'next/router'
 
 const BASE_URL = 'http://alurakut.vercel.app/';
 const v = '1';
-
 
 function Link({ href, children, ...props }) {
   return (
@@ -21,6 +21,7 @@ function Link({ href, children, ...props }) {
 // ================================================================================================================
 export function AlurakutMenu({ githubUser }) {
   const [isMenuOpen, setMenuState] = React.useState(false);
+  const routerMenuSair = useRouter();
   return (
     <AlurakutMenu.Wrapper isMenuOpen={isMenuOpen}>
       <div className="container">
@@ -36,7 +37,11 @@ export function AlurakutMenu({ githubUser }) {
 
         <nav>
           {/*<a href={`/logout`}>*/}
-          <a href={`/login`}>
+          <a onClick={(event) => {
+            event.preventDefault()
+            alert("Deslogado com sucesso")
+            routerMenuSair.push('/login', {})
+          }}>
             Sair
           </a>
           <div>
@@ -187,6 +192,7 @@ function AlurakutMenuProfileSidebar({ githubUser }) {
 // AlurakutProfileSidebarMenuDefault
 // ================================================================================================================
 export function AlurakutProfileSidebarMenuDefault() {
+  const routerSidebarSair = useRouter();
   return (
     <AlurakutProfileSidebarMenuDefault.Wrapper>
       <nav>
@@ -214,7 +220,12 @@ export function AlurakutProfileSidebarMenuDefault() {
             GitHub Trends
           </a>
         {/*<a href="/logout">*/}
-        <a href="/login">
+        <a onClick={(event) => {
+            event.preventDefault()
+            alert("Deslogado com sucesso")
+            routerSidebarSair.push('/login', {})
+
+        }}>
           <img src={`${BASE_URL}//icons/logout.svg`} />
             Sair
           </a>
