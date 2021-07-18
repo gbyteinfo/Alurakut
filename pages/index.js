@@ -27,7 +27,7 @@ function AreaProfileRelations(props){
   return (
     <AreaProfileRelationsBoxWrapper>
         <h2 className="smallTitle">{props.title} ({props.items.length})</h2><hr />
-        {console.log('PROPS ', props)}
+        {/*console.log('PROPS ', props)*/}
           <ul style={{margin:"0px"}}>
             
           </ul>
@@ -119,7 +119,7 @@ export default function Home(props) {
                 })
                 .then(async (response) => {
                   const dados = await response.json();
-                  console.log("client**", dados);
+                  //console.log("client**", dados);
                 })
                 const gruposAtt = [...gruposAll, grupo]//...INCLUINDO GRUPOSALL EM GRUPOS
                 setGrupos(gruposAtt)//SETANDO O STATE
@@ -187,20 +187,27 @@ export default function Home(props) {
 //getServerSideProps - renderização lado servidor
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
-  const token = cookies.TOKEN_USUARIO;
+  const token = cookies.USER_TOKEN;
   //const tokenDecode = jwt.decode(token)
-  const {githubUser} = jwt.decode(token);
-
-  fetch('https://alurakut.vercel.app/api/auth', {
+  const {isAuthenticated} = await fetch('https://alurakut.vercel.app/api/auth', {
     headers: {
       Authorization: token
     }
     })
     .then((resposta) => resposta.json())
-    .then((resultado) => {
-      console.log('resltado ', resultado)
-    })
 
+    console.log(isAuthenticated)
+
+    if(!isAuthenticated){
+      return {
+        redirect:{
+          destination: '/login',
+          permanent:false,
+        }
+      }
+    }
+  
+  const {githubUser} = jwt.decode(token);
   return {
     props: {
         //githubUser: tokenDecode

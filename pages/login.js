@@ -6,7 +6,7 @@ import nookies from 'nookies'
 
 export default function LoginScreen() {
   const router = useRouter();  
-  const [usuarioLogado, setUsuarioLogado] = React.useState('gbyteinfo'); //gbyteinfo padrao no campo
+  const [githubUser, setUsuarioLogado] = React.useState(''); //gbyteinfo padrao no campo
   
  return (
     <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -22,40 +22,40 @@ export default function LoginScreen() {
         <section className="formArea">
             <form className="box" onSubmit={(event) => {
                     event.preventDefault()
-                    alert(`Login Efetuado de: ${usuarioLogado}`)
+                    alert(`Login Efetuado de: ${githubUser}`)
                     fetch('https://alurakut.vercel.app/api/login', {
                         method: 'POST',
                         headers:{
                             'Content-Type': 'application/json'    
                     },
-                    body: JSON.stringify({githubUser: usuarioLogado})
+                    body: JSON.stringify({githubUser: githubUser})
                     })
                     .then(async (respostaServer) => {
                         const dadosDaResposta = await respostaServer.json()
-                        const tokenUsuario = dadosDaResposta.token
-                        console.log("Token enviado de resposta da API pelo servidor => ", dadosDaResposta.token)//token resposta
-                        nookies.set(null, 'TOKEN_USUARIO', tokenUsuario, {
+                        const token = dadosDaResposta.token
+                        //console.log("Token enviado de resposta da API pelo servidor => ", dadosDaResposta.token)//token resposta
+                        nookies.set(null, 'USER_TOKEN', token, {
                             path:'/',
                             maxAge: 86400 * 7
                             
                         })
-                        console.log('NOOKEIS DEBUG', nookies)                        
-                        router.push('/', {})//autorizando e passando a rota
+                        //console.log('NOOKEIS DEBUG', nookies)                        
+                        router.push('/')//autorizando e passando a rota
                     })
                 }}>
                 <p>Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!</p>
 
                 <input 
                     placeholder="Usuário" 
-                    value={usuarioLogado} 
+                    value={githubUser} 
                     onChange={(event) => {
                         
-                        console.log('EVENTO => ', event.target.value)
+                        //console.log('EVENTO => ', event.target.value)
                         setUsuarioLogado(event.target.value)
                     
                     }}
                 />
-                <p className="msg-input-usuario" ><strong>{usuarioLogado.length === 0 ? 'Preencha o Username' : ''}</strong></p>
+                <p className="msg-input-usuario" ><strong>{githubUser.length === 0 ? 'Preencha o Username' : ''}</strong></p>
                 <button type="submit">Login</button>
             </form>
 
