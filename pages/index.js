@@ -184,10 +184,12 @@ export default function Home(props) {
 
 //getServerSideProps - renderização lado servidor
 export async function getServerSideProps(context) {
-  console.log('Cookies ', nookies.get(context).TOKEN_USUARIO)
+  const cookies = nookies.get(context)
+  const token = cookies.TOKEN_USUARIO
+  console.log('Cookie Lado Servidor:', token )
   return {
     props: {
-        githubUser: 'peas'
+        githubUser: 'juunegreiros'
     },
   }
 }
