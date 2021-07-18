@@ -2,12 +2,12 @@ import React from 'react';
 
 //HOOK DO NEXT
 import { useRouter } from 'next/router'
+import nookies from 'nookies'
 
 export default function LoginScreen() {
   const router = useRouter();  
   const [usuarioLogado, setUsuarioLogado] = React.useState('gbyteinfo'); //gbyteinfo padrao no campo
-
-
+  
  return (
     <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <div className="loginScreen">
@@ -22,8 +22,26 @@ export default function LoginScreen() {
         <section className="formArea">
             <form className="box" onSubmit={(event) => {
                     event.preventDefault()
-                    alert("Login Efetuado de: ", usuarioLogado)
-                    router.push('/', {})
+                    alert(`Login Efetuado de: ${usuarioLogado}`)
+                    fetch('https://alurakut.vercel.app/api/login', {
+                        method: 'POST',
+                        headers:{
+                            'Content-Type': 'application/json'    
+                    },
+                    body: JSON.stringify({githubUser: usuarioLogado})
+                    })
+                    .then(async (respostaServer) => {
+                        const dadosDaResposta = await respostaServer.json()
+                        const tokenUsuario = dadosDaResposta.token
+                        console.log("Token enviado de resposta da API pelo servidor => ", dadosDaResposta.token)//token resposta
+                        nookies.set(null, 'TOKEN_USUARIO', tokenUsuario, {
+                            path:'/',
+                            maxAge: 86400 * 7
+                            
+                        })
+                        console.log('NOOKEIS DEBUG', nookies)                        
+                        router.push('/', {})//autorizando e passando a rota
+                    })
                 }}>
                 <p>Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!</p>
 
@@ -37,8 +55,7 @@ export default function LoginScreen() {
                     
                     }}
                 />
-    
-                <p style={{marginTop:"0px"}}><strong style={{color: "var(--colorQuarternary)"}}>{usuarioLogado.length === 0 ? 'Preencha o Username' : ''}</strong></p>
+                <p className="msg-input-usuario" ><strong>{usuarioLogado.length === 0 ? 'Preencha o Username' : ''}</strong></p>
                 <button type="submit">Login</button>
             </form>
 

@@ -426,6 +426,11 @@ const AlurakutLoginScreen = css`
         p {
           font-size: 14px;
         }
+        .msg-input-usuario{
+          color: var(--colorQuarternary);
+          margin-top:0;
+          
+        }
         a {
           text-decoration: none;
           color: var(--colorPrimary);
