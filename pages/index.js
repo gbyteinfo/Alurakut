@@ -1,4 +1,5 @@
 import React from 'react';
+import nookies from 'nookies'
 import MainGrid from '../src/components/MainGrid' //CSS
 import Box from '../src/components/Box' //CSS
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AluraCommons'
@@ -180,11 +181,13 @@ export default function Home(props) {
     </>
   )
 }
+
+//getServerSideProps - renderização lado servidor
 export async function getServerSideProps(context) {
-  console.log('teste')
+  console.log('Cookies ', nookies.get(context).TOKEN_USUARIO)
   return {
     props: {
         githubUser: 'peas'
-    }, // will be passed to the page component as props
+    },
   }
 }
