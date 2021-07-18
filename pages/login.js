@@ -1,8 +1,11 @@
-
-
 import React from 'react';
 
+//HOOK DO NEXT
+import { useRouter } from 'next/router'
+
 export default function LoginScreen() {
+
+  const router = useRouter();  
  return (
     <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <div className="loginScreen">
@@ -15,17 +18,16 @@ export default function LoginScreen() {
         </section>
 
         <section className="formArea">
-          <form className="box" >
-            <p>
-              Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
-          </p>
-            <input placeholder="Usuário" />
-            <button onClick={() =>{
-                alert("Login Efetuado")
-            }} type="submit">
-              Login
-            </button>
-          </form>
+            <form className="box" >
+                <p>Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!</p>
+                <input placeholder="Usuário" />
+                <button onClick={() => {
+                    alert("Login Efetuado")
+                    router.push('/', {})
+                }} type="submit">
+                Login
+                </button>
+            </form>
 
           <footer className="box">
             <p>
