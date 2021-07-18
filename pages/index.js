@@ -41,7 +41,7 @@ export default function Home(props) {
   /* INICIO MANIPULANDO STATES / API */
     /* INICIO CONSUMINDO API GITHUB */
     React.useEffect(function() { // USANDO HOCKS PARA MANIPULAR STATE
-      fetch('https://api.github.com/users/gbyteinfo/followers')
+      fetch(`https://api.github.com/users/${githubUser}/followers`)
         .then(function (respostaServidor){ // CRIA A PROMISSE
           return respostaServidor.json();
         })
