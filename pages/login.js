@@ -4,9 +4,10 @@ import React from 'react';
 import { useRouter } from 'next/router'
 
 export default function LoginScreen() {
-
   const router = useRouter();  
-  
+  const [usuarioLogado, setUsuarioLogado] = React.useState('gbyteinfo'); //gbyteinfo padrao no campo
+
+
  return (
     <main style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <div className="loginScreen">
@@ -21,11 +22,23 @@ export default function LoginScreen() {
         <section className="formArea">
             <form className="box" onSubmit={(event) => {
                     event.preventDefault()
-                    alert("Login Efetuado")
+                    alert("Login Efetuado de: ", usuarioLogado)
                     router.push('/', {})
                 }}>
                 <p>Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!</p>
-                <input placeholder="Usuário" />
+
+                <input 
+                    placeholder="Usuário" 
+                    value={usuarioLogado} 
+                    onChange={(event) => {
+                        
+                        console.log('EVENTO => ', event.target.value)
+                        setUsuarioLogado(event.target.value)
+                    
+                    }}
+                />
+    
+                <p style={{marginTop:"0px"}}><strong style={{color: "var(--colorQuarternary)"}}>{usuarioLogado.length === 0 ? 'Preencha o Username' : ''}</strong></p>
                 <button type="submit">Login</button>
             </form>
 
