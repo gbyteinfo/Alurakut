@@ -180,3 +180,11 @@ export default function Home() {
     </>
   )
 }
+export async function getServerSideProps(context) {
+  console.log('teste')
+  return {
+    props: {
+        
+    }, // will be passed to the page component as props
+  }
+}
