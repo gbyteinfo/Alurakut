@@ -20,7 +20,9 @@ export default function LoginScreen() {
               Acesse agora mesmo com seu usuário do <strong>GitHub</strong>!
           </p>
             <input placeholder="Usuário" />
-            <button type="submit">
+            <button onClick={() =>{
+                alert("Login Efetuado")
+            }} type="submit">
               Login
             </button>
           </form>
