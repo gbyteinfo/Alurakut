@@ -31,8 +31,8 @@ function AreaProfileRelations(props){
       </AreaProfileRelationsBoxWrapper>
   )
 }
-export default function Home() {
-  const githubUser = 'gbyteinfo';
+export default function Home(props) {
+  const githubUser = props.githubUser;
   const pessoasFavoritas = ['gbyteinfo', 'juunegreiros', 'omariosouto', 'peas', 'joana', 'felipefialho']
   const [seguidores, setSeguidores] = React.useState([]); //USANDO HOCKS PARA GUARDAR STATE
   const [gruposAll, setGrupos] = React.useState([]);
@@ -184,7 +184,7 @@ export async function getServerSideProps(context) {
   console.log('teste')
   return {
     props: {
-        
+        githubUser: 'peas'
     }, // will be passed to the page component as props
   }
 }
