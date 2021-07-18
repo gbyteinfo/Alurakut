@@ -100,13 +100,12 @@ export default function Home() {
                 
                 //CAPTURANDO DADOS DO FORMULARIO
                 const dadosFormGrupos = new FormData(event.target)
-
                 const grupo = {
-                  title: dadosFormGrupos.get('titleGroup'),
-                  imageUrl: dadosFormGrupos.get('imageGroup'),
-                  creatorSlug: githubUser,
+                  title: dadosFormGrupos.get('titleGroup'),//FORM 1
+                  imageUrl: dadosFormGrupos.get('imageGroup'),//FORM 2
+                  creatorSlug: githubUser, //USER PADRAO
                 }
-                
+                //CHAMANDO API
                 fetch('/api/grupos', {
                   method: 'POST',
                   headers:{
@@ -116,11 +115,10 @@ export default function Home() {
                 })
                 .then(async (response) => {
                   const dados = await response.json();
-                  console.log(dados);
+                  console.log("client**", dados);
                 })
-                
-              const gruposAtt = [...gruposAll, grupo]
-              setGrupos(gruposAtt)
+                const gruposAtt = [...gruposAll, grupo]//...INCLUINDO GRUPOSALL EM GRUPOS
+                setGrupos(gruposAtt)//SETANDO O STATE
               }}
             >
               <div>

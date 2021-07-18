@@ -1,5 +1,6 @@
 import {SiteClient } from 'datocms-client';
 
+//BFF
 export default async function recebedorDeRequest(request, response){
     
     if(request.method === 'POST'){
@@ -14,7 +15,7 @@ export default async function recebedorDeRequest(request, response){
             //creatorSlug:"Sluag",
         })
 
-        console.log(registro)
+        console.log("server**", registro)
         response.json({
             dados: 'Novo registro criado!',
             registroCriado: registro,
