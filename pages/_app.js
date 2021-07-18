@@ -1,5 +1,4 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
-
 import { AlurakutStyles } from '../src/lib/AluraCommons'
 
 const GlobalStyle = createGlobalStyle`
@@ -29,8 +28,6 @@ const theme = {
     primary: 'black',
   },
 }
-console.log("Debug no app")
-
 export default function App({ Component, pageProps }) {
   return (
     <>
