@@ -1,5 +1,6 @@
 import React from 'react';
 import nookies from 'nookies'
+import jwt from 'jsonwebtoken'
 import MainGrid from '../src/components/MainGrid' //CSS
 import Box from '../src/components/Box' //CSS
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/lib/AluraCommons'
@@ -26,6 +27,7 @@ function AreaProfileRelations(props){
   return (
     <AreaProfileRelationsBoxWrapper>
         <h2 className="smallTitle">{props.title} ({props.items.length})</h2><hr />
+        {console.log('PROPS ', props)}
           <ul style={{margin:"0px"}}>
             
           </ul>
@@ -186,10 +188,13 @@ export default function Home(props) {
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
   const token = cookies.TOKEN_USUARIO
-  console.log('Cookie Lado Servidor:', token )
+  //const tokenDecode = jwt.decode(token)
+  const tokenDecode = jwt.decode(token).githubUser;
+
+  console.log('Token decodificado:', tokenDecode )
   return {
     props: {
-        githubUser: 'juunegreiros'
+        githubUser: tokenDecode
     },
   }
 }
