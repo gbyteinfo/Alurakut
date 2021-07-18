@@ -187,14 +187,24 @@ export default function Home(props) {
 //getServerSideProps - renderização lado servidor
 export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
-  const token = cookies.TOKEN_USUARIO
+  const token = cookies.TOKEN_USUARIO;
   //const tokenDecode = jwt.decode(token)
-  const tokenDecode = jwt.decode(token).githubUser;
+  const {githubUser} = jwt.decode(token);
 
-  console.log('Token decodificado:', tokenDecode )
+  fetch('https://alurakut.vercel.app/api/auth', {
+    headers: {
+      Authorization: token
+    }
+    })
+    .then((resposta) => resposta.json())
+    .then((resultado) => {
+      console.log('resltado ', resultado)
+    })
+
   return {
     props: {
-        githubUser: tokenDecode
+        //githubUser: tokenDecode
+        githubUser
     },
   }
 }
