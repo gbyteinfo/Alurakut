@@ -189,12 +189,12 @@ export async function getServerSideProps(context) {
   const cookies = nookies.get(context)
   const token = cookies.TOKEN_USUARIO
   //const tokenDecode = jwt.decode(token)
-  const { githubUser } = jwt.decode(token);
+  const tokenDecode = jwt.decode(token).githubUser;
 
-  console.log('Token decodificado:', githubUser )
+  console.log('Token decodificado:', tokenDecode )
   return {
     props: {
-        githubUser
+        githubUser: tokenDecode
     },
   }
 }
